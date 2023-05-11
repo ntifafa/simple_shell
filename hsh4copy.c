@@ -55,12 +55,12 @@ int main(int ac, char **av, char **env)
 		numchars_read = getline(&LinePtr, &line_size, stdin);
 		if (numchars_read == -1)
 			_EOF_case(LinePtr);
-		else if (*LinePtr == '\n' || *LinePtr == ' ' )
-			free(LinePtr);
+		/*else if (*LinePtr == '\n' || *LinePtr == ' ' )*/
+			/*free(LinePtr);*/
 		else
 		{
 			LinePtr[_strlen(LinePtr) - 1] = '\0';
-			LinePtr_copy = _parse_token(LinePtr, " \0");
+			LinePtr_copy = _parse_token(LinePtr, " \t\n\0");
 			free(LinePtr);
 			if (_strcmp(LinePtr_copy[0], "exit") == 0)
 				_exit_shell(LinePtr_copy);
