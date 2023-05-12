@@ -29,6 +29,7 @@ void _free_argv(char **LinePtr_copy);
 void _free_before_exit(char **LinePtr_copy);
 void _handle(int signals);
 int main(int ac, char **av, char **env);
+int check_spaces(char *LinePtr);
 
 
 
@@ -55,8 +56,9 @@ int main(int ac, char **av, char **env)
 		numchars_read = getline(&LinePtr, &line_size, stdin);
 		if (numchars_read == -1)
 			_EOF_case(LinePtr);
-		/*else if (*LinePtr == '\n' || *LinePtr == ' ' )*/
-			/*free(LinePtr);*/
+		else if (*LinePtr == '\n' || /* *LinePtr == ' '*/
+		check_spaces(LinePtr) )
+			free(LinePtr);
 		else
 		{
 			LinePtr[_strlen(LinePtr) - 1] = '\0';
@@ -678,6 +680,7 @@ char **_parse_token(char *LinePtr, const char *delimit)
 
 /**
  * _shell_prompt - prints the prompt
+ * 
  * Return: Nothing.
  */
 
@@ -685,4 +688,24 @@ void _shell_prompt(void)
 {
 	if (isatty(0))
 		write(1, "RN_SHELL $ ", 11);
+}
+
+/**
+ * check_spaces - checks if the user input only spaces.
+ * @LinePtr: The pointer to input string.
+ * Return: 1 on success, 0 on failure
+ */
+int check_spaces(char *LinePtr)
+{
+	int i = 0;
+
+	LinePtr[_strlen(LinePtr) - 1] = '\0';
+	while (LinePtr[i] != '\0')
+	{
+		if(LinePtr[i] != ' ')
+			return(0);
+		i++;
+
+	}
+	return (1);
 }
