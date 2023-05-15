@@ -432,14 +432,12 @@ void _exit_shell(char **LinePtr_copy)
 	}
 	else
 	{
-		perror("Error");
+		sta_tus = _atoi(LinePtr_copy[1]);
 		_free_argv(LinePtr_copy);
-		return;
+		exit(sta_tus);
 	}
 
-	sta_tus = _atoi(LinePtr_copy[1]);
-	_free_argv(LinePtr_copy);
-	exit(sta_tus);
+
 }
 
 
