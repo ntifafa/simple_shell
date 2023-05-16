@@ -21,7 +21,7 @@ void _invok_child(char **LinePtr_copy, char *name, char **env, size_t prm_i);
 int _strncmp(const char *s1, const char *s2, size_t n);
 int _change_dir_func(char *path, char **env);
 void _execmd(char **LinePtr_copy, char *name, char **env, size_t prm_i);
-void _envir_print(char **env);
+void _envir_print(char **LinePtr_copy, char **env);
 char **_get_pathtok(char **env);
 void _error_msg(char *name, size_t prm_i, char **LinePtr_copy);
 char **_parse_token(char *LinePtr, const char *delimit);
@@ -66,6 +66,8 @@ int main(int ac, char **av, char **env)
 			free(LinePtr);
 			if (_strcmp(LinePtr_copy[0], "exit") == 0)
 				_exit_shell(LinePtr_copy);
+			else if (_strcmp(LinePtr_copy[0], "env") == 0)
+				_envir_print(LinePtr_copy, env);
 			else if (_strcmp(LinePtr_copy[0], "cd") == 0)
 				_change_dir_func(LinePtr_copy[1], env);
 			else
@@ -325,7 +327,7 @@ int _change_dir_func(char *path, char **env)
  * Return:
  */
 
-void _envir_print(char **env)
+void _envir_print(char **LinePtr_copy, char **env)
 {
 	size_t l = 0, len = 0;
 
@@ -338,6 +340,7 @@ void _envir_print(char **env)
 
 		l++;
 	}
+	_free_argv(LinePtr_copy);
 }
 
 
@@ -379,9 +382,9 @@ void _execmd(char **LinePtr_copy, char *name, char **env, size_t prm_i)
 	struct stat buf;
 	unsigned int i = 0;
 
-	if (_strcmp(LinePtr_copy[0], "env") == 0)
-		_envir_print(env);
-	else if (stat(LinePtr_copy[0], &buf) == 0)
+	/*if (_strcmp(LinePtr_copy[0], "env") == 0)
+		_envir_print(env);*/
+	if (stat(LinePtr_copy[0], &buf) == 0)
 	{
 		if (execve(LinePtr_copy[0], LinePtr_copy, env) < 0)
 		{
