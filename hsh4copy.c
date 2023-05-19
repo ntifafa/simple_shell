@@ -6,6 +6,8 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 
+#define CMDFAILERR 0
+
 void _puts(char *s);
 char *_strcat_sp(char *destin, char *source);
 int _strcmp(char *s1, char *s2);
