@@ -38,6 +38,6 @@ void _handle(int signals);
 int main(int ac, char **av, char **env);
 int check_spaces(char *LinePtr);
 
-int errnum = 0, *p = &errnum;
+/*int errnum = 0, *p = &errnum;*/
 
 #endif
