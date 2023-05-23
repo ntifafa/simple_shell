@@ -2,6 +2,7 @@
 
 /**
  * _envir_print - A function that prints all enviromental variables.
+ * @LinePtr_copy: Commands from user
  * @env: The pointer to enviromental variables.
  * Return:
  */

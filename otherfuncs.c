@@ -14,7 +14,7 @@ void _handle(int signals)
 
 /**
  * _shell_prompt - prints the prompt
- * 
+ *
  * Return: Nothing.
  */
 
@@ -36,8 +36,8 @@ int check_spaces(char *LinePtr)
 	LinePtr[_strlen(LinePtr) - 1] = '\0';
 	while (LinePtr[i] != '\0')
 	{
-		if(LinePtr[i] != ' ')
-			return(0);
+		if (LinePtr[i] != ' ')
+			return (0);
 		i++;
 
 	}

@@ -25,7 +25,7 @@ void _invok_child(char **LinePtr_copy, char *name, char **env, size_t prm_i)
 	{
 		_execmd(LinePtr_copy, name, env, prm_i);
 		/*_free_argv(LinePtr_copy);*/
-		
+
 	}
 	else
 	{
@@ -52,8 +52,6 @@ void _execmd(char **LinePtr_copy, char *name, char **env, size_t prm_i)
 	struct stat buf;
 	unsigned int i = 0;
 
-	/*if (_strcmp(LinePtr_copy[0], "env") == 0)
-		_envir_print(env);*/
 	if (stat(LinePtr_copy[0], &buf) == 0)
 	{
 		if (execve(LinePtr_copy[0], LinePtr_copy, env) < 0)

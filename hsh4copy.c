@@ -23,8 +23,7 @@ int main(int ac, char **av, char **env)
 		numchars_read = getline(&LinePtr, &line_size, stdin);
 		if (numchars_read == -1)
 			_EOF_case(LinePtr);
-		else if (*LinePtr == '\n' || /* *LinePtr == ' '*/
-		check_spaces(LinePtr) )
+		else if (*LinePtr == '\n' || check_spaces(LinePtr))
 			free(LinePtr);
 		else
 		{
