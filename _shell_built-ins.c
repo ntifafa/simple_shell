@@ -35,7 +35,7 @@ void _exit_shell(char **LinePtr_copy)
 
 	if (LinePtr_copy[1] == NULL)
 	{
-		if (*p == 2)
+		if (sta_tus == 2)
 		{
 			_free_argv(LinePtr_copy);
 			exit(2);
