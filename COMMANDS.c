@@ -80,7 +80,6 @@ void _execmd(char **LinePtr_copy, char *name, char **env, size_t prm_i)
 		}
 		_error_msg(name, prm_i, LinePtr_copy);
 		/*(void)name; (void)prm_i;*/
-		*p = errno;
 		_free_argv(pathvar);
 		_free_argv(LinePtr_copy);
 		LinePtr_copy = NULL;
