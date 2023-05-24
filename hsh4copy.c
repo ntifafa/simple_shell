@@ -19,7 +19,6 @@ int main(int ac, char **av, char **env)
 	{
 		prm_i = prm_i + 1;
 		_shell_prompt();
-		/*signal(SIGINT, _handle);*/
 		numchars_read = getline(&LinePtr, &line_size, stdin);
 		if (numchars_read == -1)
 			_EOF_case(LinePtr);
@@ -27,7 +26,6 @@ int main(int ac, char **av, char **env)
 			free(LinePtr);
 		else
 		{
-			/*LinePtr[_strlen(LinePtr) - 1] = '\0';*/
 			LinePtr_copy = _parse_token(LinePtr, " \t\n\0");
 			free(LinePtr);
 			if (_strcmp(LinePtr_copy[0], "exit") == 0)
